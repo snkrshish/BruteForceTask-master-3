@@ -64,7 +64,6 @@ extension ViewController {
 
         while password != passwordToUnlock {
             password = generateBruteForce(password, fromArray: allowedCharacters)
-            print(password)
         }
 
        DispatchQueue.main.async {
