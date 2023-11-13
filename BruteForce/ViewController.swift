@@ -4,7 +4,11 @@ class ViewController: UIViewController {
 
     //MARK: - Outlet
 
-
+    @IBOutlet weak var passwordLabel: UILabel!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var textField: UITextField!
+    @IBOutlet weak var generatePasswordButton: UIButton!
+    
 
     //MARK: - Lifecycle
 
@@ -15,7 +19,9 @@ class ViewController: UIViewController {
     }
     //MARK: - Action
 
-
+    @IBAction func generatePasswordButtonPressed(_ sender: UIButton) {
+    }
+    
 
 }
 
@@ -23,7 +29,7 @@ class ViewController: UIViewController {
     //MARK: - Brute force Func
 extension ViewController {
 
-    func bruteForce(passwordToUnlock: String) {
+   private func bruteForce(passwordToUnlock: String) {
         let allowedCharacters:   [String] = String().printable.map { String($0) }
 
         var password: String = ""
@@ -33,16 +39,16 @@ extension ViewController {
         }
     }
 
-    func indexOf(character: Character, _ array: [String]) -> Int {
+    private func indexOf(character: Character, _ array: [String]) -> Int {
         return array.firstIndex(of: String(character))!
     }
 
-    func characterAt(index: Int, _ array: [String]) -> Character {
+    private func characterAt(index: Int, _ array: [String]) -> Character {
         return index < array.count ? Character(array[index])
         : Character("")
     }
 
-    func generateBruteForce(_ string: String, fromArray array: [String]) -> String {
+    private func generateBruteForce(_ string: String, fromArray array: [String]) -> String {
         var str: String = string
 
         if str.count <= 0 {
