@@ -42,7 +42,7 @@
 		264DFED1260D07EF0035EA15 = {
 			isa = PBXGroup;
 			children = (
-				264DFEDC260D07EF0035EA15 /* BruteForce */,
+				264DFEDC260D07EF0035EA15 /* Pr2503 */,
 				264DFEDB260D07EF0035EA15 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -55,7 +55,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		264DFEDC260D07EF0035EA15 /* BruteForce */ = {
+		264DFEDC260D07EF0035EA15 /* Pr2503 */ = {
 			isa = PBXGroup;
 			children = (
 				264DFEDD260D07EF0035EA15 /* AppDelegate.swift */,
@@ -67,7 +67,7 @@
 				264DFEE8260D07F00035EA15 /* LaunchScreen.storyboard */,
 				264DFEEB260D07F00035EA15 /* Info.plist */,
 			);
-			path = BruteForce;
+			path = Pr2503;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
