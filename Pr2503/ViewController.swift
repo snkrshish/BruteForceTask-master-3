@@ -15,14 +15,42 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.bruteForce(passwordToUnlock: "1!gr")
+        activityIndicator.isHidden = true
+        generatePasswordButton.layer.cornerRadius = 8
     }
+
     //MARK: - Action
 
     @IBAction func generatePasswordButtonPressed(_ sender: UIButton) {
+
+        let currentPassword = generatePassword(countCharacters: 3)
+
+        activityIndicator.isHidden = false
+        textField.isSecureTextEntry = true
+        textField.text = "\(currentPassword)"
+        passwordLabel.text = "Подбираем пароль..."
+        activityIndicator.startAnimating()
+
+        DispatchQueue.global().async {
+            self.bruteForce(passwordToUnlock: currentPassword)
+        }
     }
     
+    //MARK: - generate password func
 
+    private func generatePassword (countCharacters: Int) -> String {
+        let allowedCharacters = String().printable
+        let allowedCharactersCount = UInt32(String().printable.count)
+        var password = ""
+
+        for _ in 0 ..< countCharacters {
+            let randomNum = Int(arc4random_uniform(allowedCharactersCount))
+            let randomIndex = allowedCharacters.index(allowedCharacters.startIndex, offsetBy: randomNum)
+            let randomCharacters = allowedCharacters[randomIndex]
+            password += String(randomCharacters)
+        }
+        return password
+    }
 }
 
 
@@ -36,7 +64,15 @@ extension ViewController {
 
         while password != passwordToUnlock {
             password = generateBruteForce(password, fromArray: allowedCharacters)
+            print(password)
         }
+
+       DispatchQueue.main.async {
+           self.activityIndicator.stopAnimating()
+           self.activityIndicator.isHidden = true
+           self.passwordLabel.text = password
+           self.textField.isSecureTextEntry = false
+       }
     }
 
     private func indexOf(character: Character, _ array: [String]) -> Int {
